@@ -16,7 +16,10 @@ export type NavLink = {
 
 export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
   analyticsConfig?: AnalyticsConfig;
-  comments?: CommentsConfig;
+  comments?: {
+    provider?: string;  // Ensure the provider is part of comments configuration
+    [key: string]: any; // Any other comment-related settings
+  };
   defaultAuthor: string;
   editLinkRoot?: string;  
   logo?: AuthorConfig["logo"];
@@ -51,7 +54,10 @@ export default siteConfig;
 
 export type UserConfig = {
   analyticsConfig?: AnalyticsConfig;
-  comments?: CommentsConfig;
+  comments?: {
+    provider?: string;  // Ensure provider is part of comments config in userConfig
+    [key: string]: any;
+  };
   defaultAuthor: string;
   editLinkRoot?: string;  
   logo?: AuthorConfig["logo"];

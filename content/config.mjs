@@ -13,7 +13,11 @@ const config = {
     navLinks: [{ href: "/about", name: "About" }],
     showComments: true,
     editLinkRoot: "https://github.com/your-repo",
-    defaultAuthor: "Your Default Author Name"
+    defaultAuthor: "Your Default Author Name",
+    comments: {
+        provider: "giscus", // Example provider, replace with the actual provider you are using (e.g., giscus, disqus, etc.)
+        // Other comment configuration details
+      }
   };
   
   export default config;
