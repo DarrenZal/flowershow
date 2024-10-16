@@ -1,4 +1,5 @@
 import userConfig from "@/content/config.mjs";
+import Disqus from 'disqus-react';
 import {
   AnalyticsConfig,
   AuthorConfig,
@@ -14,12 +15,23 @@ export type NavLink = {
   name: string;
 };
 
+// Define the commentsConfig for Disqus (or other provider)
+export const commentsConfig = {
+  provider: 'disqus',
+  config: {
+    url: "https://your-site.com/post-slug",   // Replace with actual post URL
+    identifier: "post-slug",                  // Replace with unique post identifier
+    title: "Post Title",                      // Replace with the actual post title
+  },
+};
+
 export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
   analyticsConfig?: AnalyticsConfig;
   comments?: {
     provider?: string;  // Ensure the provider is part of comments configuration
     [key: string]: any; // Any other comment-related settings
   };
+  commentsConfig?: typeof commentsConfig;  // Type the commentsConfig explicitly
   defaultAuthor: string;
   editLinkRoot?: string;  
   logo?: AuthorConfig["logo"];
@@ -48,6 +60,7 @@ const siteConfig: SiteConfig = {
     ...defaultConfig.theme,
     ...userConfig?.theme,
   },
+  commentsConfig: commentsConfig,  // Pass the commentsConfig here
 };
 
 export default siteConfig;
