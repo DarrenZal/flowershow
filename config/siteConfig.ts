@@ -18,6 +18,7 @@ export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
   navLinks: NavLink[];
   showComments?: boolean;
   editLinkRoot?: string;  // Ensure editLinkRoot is part of SiteConfig
+  defaultAuthor?: string; 
 } & Partial<typeof userConfig>;
 
 const siteConfig: SiteConfig = {

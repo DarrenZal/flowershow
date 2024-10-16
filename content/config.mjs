@@ -12,7 +12,8 @@ const config = {
     // links to the pages you want to link to in the navbar
     navLinks: [{ href: "/about", name: "About" }],
     showComments: true,
-    editLinkRoot: "https://github.com/your-repo"
+    editLinkRoot: "https://github.com/your-repo",
+    defaultAuthor: "Your Default Author Name"
   };
   
   export default config;
