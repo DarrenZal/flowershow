@@ -9,9 +9,21 @@ import {
 } from "@portaljs/core";
 import { DefaultSeoProps } from "next-seo";
 
+export type NavLink = {
+  href: string;
+  name: string;
+};
+
+
+export type SiteConfig = {
+  navLinks: NavLink[];
+} & Partial<typeof defaultConfig> & Partial<typeof userConfig>;
+
 const siteConfig: SiteConfig = {
   ...defaultConfig,
   ...userConfig,
+  // Explicitly define navLinks to avoid the incorrect type inference
+  navLinks: (userConfig?.navLinks || defaultConfig.navLinks || []) as NavLink[], 
   theme: {
     ...defaultConfig.theme,
     ...userConfig?.theme,
@@ -20,10 +32,6 @@ const siteConfig: SiteConfig = {
 
 export default siteConfig;
 
-export type NavLink = {
-  href: string;
-  name: string;
-};
 
 export type UserConfig = {
   analyticsConfig?: AnalyticsConfig;
@@ -47,4 +55,3 @@ export type UserConfig = {
   navLinks?: NavLink[];  // Properly typed navLinks
 } & Partial<typeof defaultConfig>;
 
-export type SiteConfig = typeof defaultConfig & typeof userConfig;
