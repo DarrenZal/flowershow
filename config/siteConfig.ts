@@ -12,8 +12,6 @@ import { DefaultSeoProps } from "next-seo";
 const siteConfig: SiteConfig = {
   ...defaultConfig,
   ...userConfig,
-  // prevent theme object overrides for
-  // values not provided in userConfig
   theme: {
     ...defaultConfig.theme,
     ...userConfig?.theme,
@@ -21,6 +19,11 @@ const siteConfig: SiteConfig = {
 };
 
 export default siteConfig;
+
+export type NavLink = {
+  href: string;
+  name: string;
+};
 
 export type UserConfig = {
   analyticsConfig?: AnalyticsConfig;
@@ -41,6 +44,7 @@ export type UserConfig = {
   title?: string;
   author: string;
   domain: string;
+  navLinks?: NavLink[];  // Properly typed navLinks
 } & Partial<typeof defaultConfig>;
 
 export type SiteConfig = typeof defaultConfig & typeof userConfig;

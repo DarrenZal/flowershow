@@ -12,6 +12,11 @@ const config = {
     // links to the pages you want to link to in the navbar
     navLinks: [{ href: "/about", name: "About" }],
   };
+
+  const defaultConfig = {
+    // other default settings...
+    navLinks: [],  // Default to an empty array if not specified
+  };
   
   export default config;
   
