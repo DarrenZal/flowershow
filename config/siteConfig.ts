@@ -16,7 +16,8 @@ export type NavLink = {
 
 export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
   navLinks: NavLink[];
-  showComments?: boolean; // Ensure showComments is part of SiteConfig
+  showComments?: boolean;
+  editLinkRoot?: string;  // Ensure editLinkRoot is part of SiteConfig
 } & Partial<typeof userConfig>;
 
 const siteConfig: SiteConfig = {
@@ -36,14 +37,14 @@ export type UserConfig = {
   analyticsConfig?: AnalyticsConfig;
   comments?: CommentsConfig;
   defaultAuthor: string;
-  editLinkRoot?: string;
+  editLinkRoot?: string;  
   logo?: AuthorConfig["logo"];
   navbarTitle?: {
     text?: NavConfig["title"];
     logo?: NavConfig["logo"];
   };
   nextSeo?: Partial<DefaultSeoProps>;
-  showComments?: boolean; // Add showComments here
+  showComments?: boolean;
   search?: NavConfig["search"];
   social?: NavConfig["social"];
   theme?: ThemeConfig;
@@ -51,5 +52,5 @@ export type UserConfig = {
   title?: string;
   author: string;
   domain: string;
-  navLinks?: NavLink[]; 
+  navLinks?: NavLink[];
 } & Partial<typeof defaultConfig>;
