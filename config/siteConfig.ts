@@ -15,10 +15,25 @@ export type NavLink = {
 };
 
 export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
-  navLinks: NavLink[];
+  analyticsConfig?: AnalyticsConfig;
+  comments?: CommentsConfig;
+  defaultAuthor: string;
+  editLinkRoot?: string;  
+  logo?: AuthorConfig["logo"];
+  navbarTitle?: {
+    text?: NavConfig["title"];
+    logo?: NavConfig["logo"];
+  };
+  nextSeo?: Partial<DefaultSeoProps>;
   showComments?: boolean;
-  editLinkRoot?: string;  // Ensure editLinkRoot is part of SiteConfig
-  defaultAuthor?: string; 
+  search?: NavConfig["search"];
+  social?: NavConfig["social"];
+  theme?: ThemeConfig;
+  preProcess?: (source: string) => string;
+  title?: string;
+  author: string;
+  domain: string;
+  navLinks?: NavLink[];
 } & Partial<typeof userConfig>;
 
 const siteConfig: SiteConfig = {
