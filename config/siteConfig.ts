@@ -14,16 +14,15 @@ export type NavLink = {
   name: string;
 };
 
-
-export type SiteConfig = {
+export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
   navLinks: NavLink[];
-} & Partial<typeof defaultConfig> & Partial<typeof userConfig>;
+} & Partial<typeof userConfig>;
 
 const siteConfig: SiteConfig = {
   ...defaultConfig,
   ...userConfig,
-  // Explicitly define navLinks to avoid the incorrect type inference
-  navLinks: (userConfig?.navLinks || defaultConfig.navLinks || []) as NavLink[], 
+  // If either config defines navLinks, we use it, otherwise, default to an empty array
+  navLinks: userConfig?.navLinks ?? defaultConfig.navLinks ?? [],
   theme: {
     ...defaultConfig.theme,
     ...userConfig?.theme,
@@ -31,7 +30,6 @@ const siteConfig: SiteConfig = {
 };
 
 export default siteConfig;
-
 
 export type UserConfig = {
   analyticsConfig?: AnalyticsConfig;
@@ -52,6 +50,5 @@ export type UserConfig = {
   title?: string;
   author: string;
   domain: string;
-  navLinks?: NavLink[];  // Properly typed navLinks
+  navLinks?: NavLink[]; // Properly typed navLinks
 } & Partial<typeof defaultConfig>;
-
