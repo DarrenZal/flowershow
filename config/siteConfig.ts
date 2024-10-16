@@ -16,6 +16,7 @@ export type NavLink = {
 
 export type SiteConfig = Omit<typeof defaultConfig, 'navLinks'> & {
   navLinks: NavLink[];
+  showComments?: boolean; // Ensure showComments is part of SiteConfig
 } & Partial<typeof userConfig>;
 
 const siteConfig: SiteConfig = {
@@ -42,7 +43,7 @@ export type UserConfig = {
     logo?: NavConfig["logo"];
   };
   nextSeo?: Partial<DefaultSeoProps>;
-  showComments?: boolean;
+  showComments?: boolean; // Add showComments here
   search?: NavConfig["search"];
   social?: NavConfig["social"];
   theme?: ThemeConfig;
@@ -50,5 +51,5 @@ export type UserConfig = {
   title?: string;
   author: string;
   domain: string;
-  navLinks?: NavLink[]; // Properly typed navLinks
+  navLinks?: NavLink[]; 
 } & Partial<typeof defaultConfig>;
